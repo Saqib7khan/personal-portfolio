@@ -1,0 +1,65 @@
+System Prompt: Mohd Saqib Khan Portfolio (Edwin Le aesthetic)
+Purpose: A pinned guidance file that enforces engineering standards, design aesthetics, and content generation rules for the "Mohd Saqib Khan Portfolio".
+
+Context: We are building a minimalist, high-performance portfolio for Mohd Saqib Khan (B.Tech CSE, Greater Noida Institute of Technology). The visual inspiration is the "Edwin Le" aesthetic—monochrome, typography-driven, and motion-forward—but do not copy copyrighted text, images, or proprietary assets. Use the aesthetic as inspiration only.
+
+1. Tech Stack & Core Libraries
+- Framework: Next.js (App Router) + TypeScript.
+- Styling: Tailwind CSS (utility-first).
+- Animation: Framer Motion (page transitions, hover states, marquee).
+- Smooth scroll: Lenis (for the soft scrolling feel).
+- Deployment: Vercel (recommended) or Netlify.
+
+2. Design & Aesthetic Rules (Edwin-like Vibe)
+- Palette: Strict grayscale. Background: #ffffff or #000000. High-contrast text. No accent colors except inside project thumbnails.
+- Typography: Large, bold headings for impact (e.g., "Sup, I'm Saqib."). Use a clean sans-serif (Inter or similar).
+- Layout:
+	- Hero: Minimal intro with an optional marquee (respect prefers-reduced-motion).
+	- Work Grid: Clean responsive grid of project cards with subtle hover scale.
+	- Navigation: Minimal floating nav; hamburger menu for small screens.
+	- Micro-interactions: Subtle, performant hover/press effects (opacity, scale). Keep interactions accessible.
+
+3. Engineering Standards (SOLID & DRY)
+- Component architecture: Presentational components only; business logic in hooks (e.g., `useScrollProgress`, `useProjectData`).
+- Types: Define TypeScript interfaces in `types/`.
+	- Example: `interface Project { title: string; tech: string[]; image: string; link: string; year?: number; }`
+- Animations: Keep Framer Motion variants in `utils/animations.ts` (no large inline variant objects).
+- Responsive: Mobile-first. Ensure marquee/grid collapse gracefully.
+- Performance: Use `next/image` for optimization, add `loading="lazy"` where appropriate, and defer heavy animation components.
+
+4. Content & Data (Source of Truth)
+- Identity: Mohd Saqib Khan — Developer & CS student. Location: Greater Noida / Lucknow, India.
+- Key projects (example entries):
+	- AI-Powered Disease Diagnosis — livestock surveillance (Research/Final Year)
+	- Wordsmith — AI Writing Assistant (Python/HTML/JS)
+	- Hand Sign Detection — Computer vision / YOLO
+- Skills: Python, C++, React, AWS (EC2, S3), MySQL, TypeScript, Next.js
+
+5. Code & Content Rules
+- Data separation: Do not hardcode project data in components. Use `data/projects.ts` (or `.json`) as the single source of truth.
+- Accessibility: Respect `prefers-reduced-motion` and semantic HTML (`<article>`, `<section>`, `<nav>`). Provide keyboard focus states.
+- Images: Use placeholders (e.g., https://placehold.co) if screenshots are missing and add a TODO to replace.
+
+6. Legal & IP Guidance
+- Inspiration only: Do not copy Edwin Le's exact content, images, or proprietary interactions. Recreate the aesthetic, not the content.
+- Attribution: If using third-party templates or assets with license requirements, include attribution in `README.md`.
+
+7. Project Structure & Best Practices
+- Suggested files:
+	- `app/` (Next.js App Router)
+	- `components/` (dumb components)
+	- `hooks/` (custom hooks)
+	- `utils/animations.ts` (Framer variants)
+	- `data/projects.ts` (project data)
+	- `types/` (TypeScript interfaces)
+	- `public/` (static assets)
+- Dev workflow: scaffold with `create-next-app --typescript`, add `tailwindcss`, `framer-motion`, and `lenis`.
+
+8. About page guidance
+- Structure like Edwin Le (sections and mood) but with Saqib's content:
+	- Header: "Sup, I'm Saqib."
+	- Short bio, location, and current time/state line optional.
+	- Services: Web Development, AI/ML Research, AWS Cloud Architecture.
+	- Experience: Research on livestock AI, international hackathons, notable roles.
+
+If context is missing for a requested generation, stop and ask for the missing data (exact wording, images, or specific projects) before proceeding.

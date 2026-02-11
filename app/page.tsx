@@ -1,0 +1,86 @@
+import { Navigation } from "@/components/features/Navigation";
+import { Marquee } from "@/components/features/Marquee";
+import { ProjectGrid } from "@/components/ui/ProjectGrid";
+import { projects, marqueeSkills } from "@/data/portfolio";
+import { HeroSection } from "@/components/features/HeroSection";
+import { ContactSection } from "@/components/features/ContactSection";
+import {
+  getPersonSchema,
+  getWebsiteSchema,
+  getPortfolioSchema,
+} from "@/libs/utils/structuredData";
+
+/**
+ * Home Page
+ * 
+ * Main landing page featuring:
+ * - Hero section with large typography
+ * - Marquee of skills
+ * - Selected work grid
+ * - Contact section
+ * - Structured data for SEO
+ */
+export default function HomePage() {
+  // Filter featured projects
+  const featuredProjects = projects.filter((p) => p.featured);
+
+  // Generate structured data
+  const personSchema = getPersonSchema();
+  const websiteSchema = getWebsiteSchema();
+  const portfolioSchema = getPortfolioSchema();
+
+  return (
+    <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioSchema) }}
+      />
+
+      <Navigation />
+      
+      <main>
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Marquee Section */}
+        <section aria-label="Skills overview">
+          <Marquee text={marqueeSkills} />
+        </section>
+
+        {/* Selected Work Section */}
+        <section
+          id="work"
+          className="container mx-auto px-6 py-24"
+          aria-labelledby="work-heading"
+        >
+          <h2
+            id="work-heading"
+            className="mb-12 text-display font-bold tracking-tight"
+          >
+            Selected Work
+          </h2>
+          <ProjectGrid projects={featuredProjects} />
+        </section>
+
+        {/* Contact Section */}
+        <ContactSection />
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-black py-8 text-white">
+        <div className="container mx-auto px-6 text-center text-sm">
+          <p>© {new Date().getFullYear()} Mohd Saqib Khan. All rights reserved.</p>
+        </div>
+      </footer>
+    </>
+  );
+}
