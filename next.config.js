@@ -1,9 +1,16 @@
 /** @type {import('next').NextConfig} */
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig = {
   reactStrictMode: true,
-  
+  output: isGitHubPages ? 'export' : undefined,
+  trailingSlash: isGitHubPages ? true : undefined,
+  basePath: isGitHubPages ? '/my-portfolio' : undefined,
+  assetPrefix: isGitHubPages ? '/my-portfolio/' : undefined,
+
   // Image optimization
   images: {
+    unoptimized: isGitHubPages ? true : undefined,
     remotePatterns: [
       {
         protocol: 'https',
