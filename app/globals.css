@@ -4,6 +4,25 @@
 
 :root {
   --font-inter: "Inter", system-ui, sans-serif;
+  --color-background: 255 255 255;
+  --color-foreground: 0 0 0;
+  --color-muted: 115 115 115;
+  --color-border: 229 229 229;
+  --color-surface: 255 255 255;
+  --color-surface-muted: 245 245 245;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark {
+  --color-background: 10 10 10;
+  --color-foreground: 245 245 245;
+  --color-muted: 163 163 163;
+  --color-border: 38 38 38;
+  --color-surface: 18 18 18;
+  --color-surface-muted: 24 24 24;
 }
 
 * {
@@ -14,12 +33,13 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
   font-family: var(--font-inter);
-  background-color: #ffffff;
-  color: #000000;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -30,16 +50,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: rgb(var(--color-surface-muted));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(var(--color-muted));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(var(--color-foreground));
 }
 
 /* Reduced motion support */
@@ -55,6 +75,6 @@ body {
 
 /* Focus visible styles for accessibility */
 :focus-visible {
-  outline: 2px solid #000000;
+  outline: 2px solid rgb(var(--color-foreground));
   outline-offset: 2px;
 }

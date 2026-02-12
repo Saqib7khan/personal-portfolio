@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp } from "@/libs/utils/animations";
+import { GridBackground } from "@/components/ui/GridBackground";
 
 /**
  * HeroSection Component
@@ -14,8 +15,11 @@ import { fadeInUp } from "@/libs/utils/animations";
  */
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
-      <div className="container mx-auto max-w-6xl">
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+      {/* Grid Background */}
+      <GridBackground className="opacity-[0.07]" gridSize={40} />
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div
           initial="initial"
           animate="animate"
@@ -36,7 +40,18 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-4 pt-4">
             <Link
               href="#work"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-medium text-white transition-transform hover:scale-105"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector("#work");
+                if (element) {
+                  const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+                  window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className="group relative inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background transition-transform hover:scale-105"
             >
               View My Work
               <svg
@@ -56,7 +71,7 @@ export function HeroSection() {
 
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-black px-8 py-4 text-sm font-medium transition-all hover:bg-black hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-foreground px-8 py-4 text-sm font-medium transition-all hover:bg-foreground hover:text-background"
             >
               About Me
             </Link>

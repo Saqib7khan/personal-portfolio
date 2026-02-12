@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/features/SmoothScrollProvider";
+import { ScrollToTopButton } from "@/components/ui/ScrollToTopButton";
+import { ThemeProvider } from "@/components/features/ThemeProvider";
+import { ShootingStars } from "@/components/ui/ShootingStars";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -84,11 +87,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body>
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <ShootingStars />
+            {children}
+            <ScrollToTopButton />
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -21,9 +21,21 @@ export function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  const isValidEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const trimmedEmail = formState.email.trim();
+    if (!isValidEmail(trimmedEmail)) {
+      setEmailError("Please enter a valid email address.");
+      setSubmitStatus("idle");
+      return;
+    }
+
+    setEmailError(null);
     setIsSubmitting(true);
 
     try {
@@ -47,7 +59,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-black py-24 text-white"
+      className="bg-foreground py-24 text-background"
       aria-labelledby="contact-heading"
     >
       <div className="container mx-auto px-6">
@@ -69,7 +81,7 @@ export function ContactSection() {
             {/* Contact Info */}
             <div className="space-y-6">
               <div>
-                <h3 className="mb-2 text-sm font-medium text-gray-400">Email</h3>
+                <h3 className="mb-2 text-sm font-medium text-muted">Email</h3>
                 <a
                   href={`mailto:${personalInfo.contact.email}`}
                   className="text-lg hover:underline"
@@ -79,7 +91,7 @@ export function ContactSection() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-sm font-medium text-gray-400">Phone</h3>
+                <h3 className="mb-2 text-sm font-medium text-muted">Phone</h3>
                 <a
                   href={`tel:${personalInfo.contact.phone}`}
                   className="text-lg hover:underline"
@@ -89,12 +101,12 @@ export function ContactSection() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-sm font-medium text-gray-400">Location</h3>
+                <h3 className="mb-2 text-sm font-medium text-muted">Location</h3>
                 <p className="text-lg">{personalInfo.contact.location}</p>
               </div>
 
               <div>
-                <h3 className="mb-4 text-sm font-medium text-gray-400">Social</h3>
+                <h3 className="mb-4 text-sm font-medium text-muted">Social</h3>
                 <div className="flex gap-4">
                   {personalInfo.socials.map((social) => (
                     <a
@@ -102,7 +114,7 @@ export function ContactSection() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/20 px-4 py-2 text-sm transition-colors hover:bg-white hover:text-black"
+                      className="rounded-full border border-background/20 px-4 py-2 text-sm transition-colors hover:bg-background hover:text-foreground"
                     >
                       {social.platform}
                     </a>
@@ -122,11 +134,12 @@ export function ContactSection() {
                   id="name"
                   required
                   value={formState.name}
-                  onChange={(e) =>
-                    setFormState({ ...formState, name: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setFormState({ ...formState, name: e.target.value });
+                    setSubmitStatus("idle");
+                  }}
                   placeholder="Your Name"
-                  className="w-full rounded-lg border border-white/20 bg-transparent px-4 py-3 text-white placeholder:text-gray-500 focus:border-white focus:outline-none"
+                  className="w-full rounded-lg border border-background/20 bg-transparent px-4 py-3 text-background placeholder:text-muted focus:border-background focus:outline-none"
                 />
               </div>
 
@@ -139,12 +152,21 @@ export function ContactSection() {
                   id="email"
                   required
                   value={formState.email}
-                  onChange={(e) =>
-                    setFormState({ ...formState, email: e.target.value })
-                  }
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setFormState({ ...formState, email: value });
+                    setSubmitStatus("idle");
+                    if (emailError) {
+                      setEmailError(null);
+                    }
+                  }}
                   placeholder="your@email.com"
-                  className="w-full rounded-lg border border-white/20 bg-transparent px-4 py-3 text-white placeholder:text-gray-500 focus:border-white focus:outline-none"
+                  className="w-full rounded-lg border border-background/20 bg-transparent px-4 py-3 text-background placeholder:text-muted focus:border-background focus:outline-none"
+                  aria-invalid={emailError ? "true" : "false"}
                 />
+                {emailError && (
+                  <p className="text-sm text-red-400">{emailError}</p>
+                )}
               </div>
 
               <div>
@@ -156,18 +178,19 @@ export function ContactSection() {
                   required
                   rows={5}
                   value={formState.message}
-                  onChange={(e) =>
-                    setFormState({ ...formState, message: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setFormState({ ...formState, message: e.target.value });
+                    setSubmitStatus("idle");
+                  }}
                   placeholder="Your message..."
-                  className="w-full rounded-lg border border-white/20 bg-transparent px-4 py-3 text-white placeholder:text-gray-500 focus:border-white focus:outline-none"
+                  className="w-full rounded-lg border border-background/20 bg-transparent px-4 py-3 text-background placeholder:text-muted focus:border-background focus:outline-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-lg bg-white px-6 py-3 font-medium text-black transition-transform hover:scale-105 disabled:opacity-50"
+                className="w-full rounded-lg bg-background px-6 py-3 font-medium text-foreground transition-transform hover:scale-105 disabled:opacity-50"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>

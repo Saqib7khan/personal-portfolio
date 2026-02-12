@@ -35,9 +35,9 @@ export function Marquee({ text, speed = 30 }: MarqueeProps) {
   const displayText = `${text} • ${text} • ${text}`;
 
   return (
-    <div className="relative overflow-hidden bg-black py-6">
+    <div className="relative overflow-hidden bg-foreground py-6">
       <motion.div
-        className="flex whitespace-nowrap"
+        className="flex whitespace-nowrap group"
         animate={
           shouldAnimate
             ? {
@@ -50,9 +50,8 @@ export function Marquee({ text, speed = 30 }: MarqueeProps) {
           repeat: Infinity,
           ease: "linear",
         }}
-        whileHover={shouldAnimate ? { animationPlayState: "paused" } : {}}
       >
-        <span className="pr-8 text-3xl font-bold tracking-tight text-white md:text-5xl">
+        <span className="pr-8 text-3xl font-bold tracking-tight text-background/80 md:text-5xl transition-all duration-300 group-hover:tracking-wider group-hover:text-background">
           {displayText}
         </span>
       </motion.div>

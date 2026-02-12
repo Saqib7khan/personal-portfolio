@@ -43,7 +43,7 @@ export const projects: Project[] = [
     description:
       "Early detection system for Foot and Mouth Disease (FMD) in livestock using temperature and motion sensor data. Leverages machine learning models to provide real-time health monitoring.",
     tech: ["Python", "TensorFlow", "IoT Sensors", "Machine Learning", "Data Analysis"],
-    image: "https://placehold.co/800x600/000000/888888?text=AI+Livestock",
+    image: "/images/projects/livestock-ai.jpg",
     year: 2025,
     category: "AI/ML",
     featured: true,
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     description:
       "AI-powered writing assistant that provides intelligent spelling correction and grammar fixes. Helps users improve their writing quality with real-time suggestions.",
     tech: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
-    image: "https://placehold.co/800x600/000000/888888?text=Wordsmith",
+    image: "/images/projects/wordsmith.jpg",
     year: 2024,
     category: "AI/ML",
     featured: true,
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     description:
       "Real-time computer vision system for recognizing static hand gestures using YOLO and TensorFlow. Enables gesture-based interaction and accessibility features.",
     tech: ["YOLO", "TensorFlow", "OpenCV", "Python", "Computer Vision"],
-    image: "https://placehold.co/800x600/000000/888888?text=Hand+Sign",
+    image: "/images/projects/hand-detection.jpg",
     year: 2024,
     category: "AI/ML",
     featured: true,
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     description:
       "Comprehensive web-based platform for streamlining administrative tasks and academic tracking. Facilitates efficient management of student records and performance monitoring.",
     tech: ["React", "Node.js", "MySQL", "Express", "AWS"],
-    image: "https://placehold.co/800x600/000000/888888?text=Student+System",
+    image: "/images/projects/student-system.jpg",
     year: 2023,
     category: "Web",
     featured: true,

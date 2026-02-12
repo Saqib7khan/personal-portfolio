@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/features/Navigation";
 import { ContactSection } from "@/components/features/ContactSection";
+import { GridBackground } from "@/components/ui/GridBackground";
+import { DotBackground } from "@/components/ui/DotBackground";
 import {
   personalInfo,
   services,
@@ -27,12 +29,13 @@ export default function AboutPage() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="container mx-auto px-6 py-24">
+        <section className="relative container mx-auto px-6 py-24 overflow-hidden">
+          <GridBackground className="opacity-[0.07]" gridSize={40} />
           <motion.div
             initial="initial"
             animate="animate"
             variants={fadeInUp}
-            className="max-w-4xl"
+            className="max-w-4xl relative z-10"
           >
             <h1 className="mb-8 text-hero font-bold leading-none tracking-tighter">
               Sup, I&apos;m Saqib.
@@ -48,7 +51,7 @@ export default function AboutPage() {
         </section>
 
         {/* Services Section */}
-        <section className="border-t border-border bg-gray-50 py-24">
+        <section className="border-t border-border bg-surface-muted py-24">
           <div className="container mx-auto px-6">
             <motion.div
               initial="initial"
@@ -68,7 +71,7 @@ export default function AboutPage() {
                   <motion.div
                     key={service.id}
                     variants={fadeInUp}
-                    className="rounded-lg bg-white p-8 shadow-sm"
+                    className="rounded-lg bg-surface p-8 shadow-sm"
                   >
                     <h3 className="mb-4 text-2xl font-bold">{service.title}</h3>
                     <p className="leading-relaxed text-muted">
@@ -82,12 +85,14 @@ export default function AboutPage() {
         </section>
 
         {/* Experience Timeline */}
-        <section className="container mx-auto px-6 py-24">
+        <section className="relative container mx-auto px-6 py-24 overflow-hidden">
+          <DotBackground className="opacity-[0.08]" dotSize={1.5} dotSpacing={30} />
           <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             variants={staggerContainer}
+            className="relative z-10"
           >
             <motion.h2
               variants={fadeInUp}
@@ -101,10 +106,10 @@ export default function AboutPage() {
                 <motion.article
                   key={exp.id}
                   variants={fadeInUp}
-                  className="border-l-2 border-black pl-8"
+                  className="border-l-2 border-foreground pl-8"
                 >
                   <div className="mb-2 flex items-center gap-4">
-                    <span className="rounded-full bg-black px-4 py-1 text-sm font-medium text-white">
+                    <span className="rounded-full bg-foreground px-4 py-1 text-sm font-medium text-background">
                       {exp.year}
                     </span>
                     <span className="text-sm text-muted">{exp.period}</span>
@@ -118,7 +123,7 @@ export default function AboutPage() {
                     <ul className="space-y-2">
                       {exp.achievements.map((achievement, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-black" />
+                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground" />
                           <span className="text-sm leading-relaxed">
                             {achievement}
                           </span>
@@ -133,7 +138,7 @@ export default function AboutPage() {
         </section>
 
         {/* Skills Section */}
-        <section className="border-t border-border bg-gray-50 py-24">
+        <section className="border-t border-border bg-surface-muted py-24">
           <div className="container mx-auto px-6">
             <motion.div
               initial="initial"
@@ -158,12 +163,14 @@ export default function AboutPage() {
                       {skills
                         .filter((s) => s.category === category)
                         .map((skill) => (
-                          <li
+                          <motion.li
                             key={skill.name}
-                            className="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow-sm"
+                            className="group relative rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground/80 shadow-sm transition-all duration-300 cursor-pointer hover:border-foreground/30 hover:text-foreground hover:shadow-md"
+                            whileHover={{ x: 4 }}
+                            whileTap={{ scale: 0.98 }}
                           >
-                            {skill.name}
-                          </li>
+                            <span className="relative z-10">{skill.name}</span>
+                          </motion.li>
                         ))}
                     </ul>
                   </motion.div>
@@ -178,7 +185,7 @@ export default function AboutPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-black py-8 text-white">
+      <footer className="border-t border-border bg-foreground py-8 text-background">
         <div className="container mx-auto px-6 text-center text-sm">
           <p>© {new Date().getFullYear()} Mohd Saqib Khan. All rights reserved.</p>
         </div>

@@ -4,7 +4,28 @@ This guide helps you create all required images and assets for optimal SEO and u
 
 ## Required Assets
 
-### 1. Open Graph Image (OG Image)
+### 1. Project Images ⭐ NEW
+- **Location:** `public/images/projects/`
+- **Dimensions:** 800 x 600 pixels (or 1200 x 900 for higher quality)
+- **Format:** JPG or PNG
+- **Purpose:** Portfolio project showcase
+
+#### Required Project Images:
+1. **livestock-ai.jpg** - AI-Powered Disease Diagnosis project
+2. **wordsmith.jpg** - Wordsmith Writing Assistant project  
+3. **hand-detection.jpg** - Hand Sign Detection project
+4. **student-system.jpg** - Student Management System project
+
+#### How to Add Your Images:
+1. Take screenshots of your projects (running applications, UI mockups, or demo videos)
+2. Crop to 800x600 or 1200x900 aspect ratio (4:3)
+3. Optimize images (use TinyPNG or similar - keep under 500KB)
+4. Name files exactly as shown above
+5. Place in `public/images/projects/` folder
+
+**Note:** Beautiful gradient placeholders are shown automatically if images are not found, so your site looks great even without images!
+
+### 2. Open Graph Image (OG Image)
 - **File:** `public/og-image.png`
 - **Dimensions:** 1200 x 630 pixels
 - **Format:** PNG or JPG

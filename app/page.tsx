@@ -4,6 +4,7 @@ import { ProjectGrid } from "@/components/ui/ProjectGrid";
 import { projects, marqueeSkills } from "@/data/portfolio";
 import { HeroSection } from "@/components/features/HeroSection";
 import { ContactSection } from "@/components/features/ContactSection";
+import { DotBackground } from "@/components/ui/DotBackground";
 import {
   getPersonSchema,
   getWebsiteSchema,
@@ -59,16 +60,21 @@ export default function HomePage() {
         {/* Selected Work Section */}
         <section
           id="work"
-          className="container mx-auto px-6 py-24"
+          className="relative container mx-auto px-6 py-24 overflow-hidden"
           aria-labelledby="work-heading"
         >
-          <h2
-            id="work-heading"
-            className="mb-12 text-display font-bold tracking-tight"
-          >
-            Selected Work
-          </h2>
-          <ProjectGrid projects={featuredProjects} />
+          {/* Dot Background */}
+          <DotBackground className="opacity-[0.08]" dotSize={1.5} dotSpacing={30} />
+          
+          <div className="relative z-10">
+            <h2
+              id="work-heading"
+              className="mb-12 text-display font-bold tracking-tight"
+            >
+              Selected Work
+            </h2>
+            <ProjectGrid projects={featuredProjects} />
+          </div>
         </section>
 
         {/* Contact Section */}
@@ -76,7 +82,7 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-black py-8 text-white">
+      <footer className="border-t border-border bg-foreground py-8 text-background">
         <div className="container mx-auto px-6 text-center text-sm">
           <p>© {new Date().getFullYear()} Mohd Saqib Khan. All rights reserved.</p>
         </div>

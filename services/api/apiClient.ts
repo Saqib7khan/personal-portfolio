@@ -16,11 +16,7 @@ interface ApiResponse<T> {
   status: number;
 }
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import type { ContactFormData } from "@/libs/types/contact";
 
 class ApiClient {
   private baseUrl: string;
@@ -85,24 +81,12 @@ class ApiClient {
   /**
    * Submit contact form
    * 
-   * Note: In production, replace this with actual API endpoint
-   * For now, this is a mock implementation
+   * Sends data to the serverless contact endpoint.
    */
   async submitContactForm(
     data: ContactFormData
   ): Promise<ApiResponse<{ success: boolean }>> {
-    // Mock implementation - replace with actual endpoint
-    // Example: return this.post('/api/contact', data);
-    
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // Simulate success
-        resolve({
-          data: { success: true },
-          status: 200,
-        });
-      }, 1000);
-    });
+    return this.post<{ success: boolean }, ContactFormData>("/api/contact", data);
   }
 }
 
@@ -110,4 +94,4 @@ class ApiClient {
 export const apiClient = new ApiClient();
 
 // Export types
-export type { ApiResponse, ContactFormData };
+export type { ApiResponse };

@@ -3,12 +3,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { Project } from "@/libs/types/content";
 import { scaleOnHover, imageReveal } from "@/libs/utils/animations";
 import { cn } from "@/libs/utils/helpers";
+import { ProjectImagePlaceholder } from "./ProjectImagePlaceholder";
 
 interface ProjectCardProps {
   project: Project;
+  isDimmed?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   className?: string;
 }
 
@@ -25,21 +32,36 @@ interface ProjectCardProps {
  * @example
  * <ProjectCard project={projectData} />
  */
-export function ProjectCard({ project, className }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  isDimmed = false,
+  onMouseEnter,
+  onMouseLeave,
+  onFocus,
+  onBlur,
+  className,
+}: ProjectCardProps) {
+  const [imageError, setImageError] = useState(false);
+  
   const cardContent = (
     <>
       {/* Image */}
       <motion.div
         variants={imageReveal}
-        className="relative aspect-[4/3] w-full overflow-hidden"
+        className="relative aspect-[4/3] w-full overflow-hidden bg-surface-muted"
       >
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {imageError || !project.image ? (
+          <ProjectImagePlaceholder title={project.title} category={project.category} />
+        ) : (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={() => setImageError(true)}
+          />
+        )}
       </motion.div>
 
       {/* Content */}
@@ -105,8 +127,13 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       variants={scaleOnHover}
       initial="initial"
       whileHover="hover"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
       className={cn(
-        "group relative overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-xl",
+        "group relative overflow-hidden rounded-lg bg-surface shadow-sm transition-all duration-300 hover:shadow-xl focus-within:ring-2 focus-within:ring-foreground/20",
+        isDimmed ? "blur-sm opacity-70" : "opacity-100",
         className
       )}
     >
