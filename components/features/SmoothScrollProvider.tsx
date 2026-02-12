@@ -30,8 +30,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         smoothWheel: true, // Enable smooth scrolling with mouse wheel
         wheelMultiplier: 0.8, // Reduce scroll speed for better control
         touchMultiplier: 1.5, // Touch scroll sensitivity
-        smoothTouch: true,
-        syncTouch: true,
         infinite: false, // Disable infinite scroll
         orientation: "vertical", // Vertical scrolling only
         gestureOrientation: "vertical",
