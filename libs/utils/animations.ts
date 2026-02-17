@@ -50,11 +50,11 @@ export const scaleOnHover: Variants = {
 };
 
 /**
- * Image reveal animation (grayscale to color)
+ * Image reveal animation (no grayscale)
  */
 export const imageReveal: Variants = {
   initial: {
-    filter: "grayscale(100%)",
+    filter: "grayscale(0%)",
   },
   hover: {
     filter: "grayscale(0%)",

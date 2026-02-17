@@ -38,45 +38,50 @@ export const personalInfo: PersonalInfo = {
  */
 export const projects: Project[] = [
   {
-    id: "livestock-disease-diagnosis",
-    title: "AI-Powered Disease Diagnosis",
+    id: "resmind",
+    title: "ResMind – Agentic AI Resume Architect",
     description:
-      "Early detection system for Foot and Mouth Disease (FMD) in livestock using temperature and motion sensor data. Leverages machine learning models to provide real-time health monitoring.",
-    tech: ["Python", "TensorFlow", "IoT Sensors", "Machine Learning", "Data Analysis"],
-    image: "/images/projects/livestock-ai.jpg",
+      "Full-stack agentic application that utilizes LLMs to autonomously rewrite and reformat user resumes based on specific job descriptions. Features real-time Generative UI with split-screen editor, secure Role-Based Access Control (RBAC), and Row Level Security (RLS) via Supabase Auth. Integrates @react-pdf/renderer to convert AI-structured JSON into perfectly formatted downloadable PDFs.",
+    tech: ["Next.js 15", "TypeScript", "Supabase", "OpenAI API", "React-PDF"],
+    image: "/images/projects/resmind.jpg",
+    link: "https://resmind.vercel.app/",
     year: 2025,
-    category: "AI/ML",
+    category: "Web",
     featured: true,
   },
   {
     id: "wordsmith",
-    title: "Wordsmith - Writing Assistant",
+    title: "Wordsmith - AI Writing Assistant",
     description:
-      "AI-powered writing assistant that provides intelligent spelling correction and grammar fixes. Helps users improve their writing quality with real-time suggestions.",
-    tech: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
+      "AI-powered writing assistant that offers spelling correction and fixes typos and errors to ensure clean and professional text. Helps users improve their writing quality with intelligent suggestions.",
+    tech: ["Python", "HTML", "CSS", "JavaScript"],
     image: "/images/projects/wordsmith.jpg",
+    github: "https://github.com/Saqib7khan/Wordsmith",
+    link: "https://github.com/Saqib7khan/Wordsmith",
     year: 2024,
     category: "AI/ML",
     featured: true,
   },
   {
-    id: "hand-sign-detection",
-    title: "Hand Sign Detection",
+    id: "portfolio",
+    title: "Personal Portfolio",
     description:
-      "Real-time computer vision system for recognizing static hand gestures using YOLO and TensorFlow. Enables gesture-based interaction and accessibility features.",
-    tech: ["YOLO", "TensorFlow", "OpenCV", "Python", "Computer Vision"],
-    image: "/images/projects/hand-detection.jpg",
-    year: 2024,
-    category: "AI/ML",
+      "Production-grade, SEO-optimized personal portfolio built with Next.js + TypeScript and styled with Tailwind CSS. Features Framer Motion animations, Lenis smooth scrolling, and a Nodemailer contact API with content driven from a central data layer for easy maintenance and scalability.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Nodemailer"],
+    image: "/images/projects/portfolio.jpg",
+    year: 2025,
+    category: "Web",
     featured: true,
   },
   {
-    id: "student-management-system",
-    title: "Student Management System",
+    id: "note-taking-app",
+    title: "Note-Taking Web App",
     description:
-      "Comprehensive web-based platform for streamlining administrative tasks and academic tracking. Facilitates efficient management of student records and performance monitoring.",
-    tech: ["React", "Node.js", "MySQL", "Express", "AWS"],
-    image: "/images/projects/student-system.jpg",
+      "Simple yet functional note-taking application with a GUI built using Python and Tkinter, with MySQL as the database for user and note management. Allows users to register, login, reset passwords, add, edit, and delete notes with secure user authentication.",
+    tech: ["Python", "Tkinter", "MySQL"],
+    image: "/images/projects/note-taking.jpg",
+    github: "https://github.com/Saqib7khan/note_taking",
+    link: "https://github.com/Saqib7khan/note_taking",
     year: 2023,
     category: "Web",
     featured: true,
@@ -159,18 +164,34 @@ export const services: Service[] = [
  * Skills - Source of Truth
  */
 export const skills: Skill[] = [
-  { name: "Python", category: "Language" },
-  { name: "C++", category: "Language" },
+  // Languages
   { name: "JavaScript", category: "Language" },
   { name: "TypeScript", category: "Language" },
+  { name: "Python", category: "Language" },
+  
+  // Frontend
   { name: "React", category: "Framework" },
   { name: "Next.js", category: "Framework" },
-  { name: "TensorFlow", category: "Framework" },
+  { name: "Tailwind CSS", category: "Framework" },
+  
+  // Backend
   { name: "Node.js", category: "Framework" },
+  
+  // Databases
+  { name: "PostgreSQL", category: "Tool" },
+  { name: "MongoDB", category: "Tool" },
+  
+  // Cloud & Infra
   { name: "AWS", category: "Cloud" },
-  { name: "MySQL", category: "Tool" },
+  { name: "AWS EC2", category: "Cloud" },
+  { name: "AWS S3", category: "Cloud" },
   { name: "Git", category: "Tool" },
-  { name: "Docker", category: "Tool" },
+  { name: "GitHub", category: "Tool" },
+  
+  // Core Skills
+  { name: "SaaS Architecture", category: "Tool" },
+  { name: "REST APIs", category: "Tool" },
+  { name: "DB Schema Design", category: "Tool" },
 ];
 
 /**
