@@ -69,6 +69,7 @@ export const projects: Project[] = [
       "Production-grade, SEO-optimized personal portfolio built with Next.js + TypeScript and styled with Tailwind CSS. Features Framer Motion animations, Lenis smooth scrolling, and a Nodemailer contact API with content driven from a central data layer for easy maintenance and scalability.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Nodemailer"],
     image: "/images/projects/portfolio.jpg",
+    link: "https://personal-portfolio-nine-alpha-50.vercel.app",
     year: 2025,
     category: "Web",
     featured: true,
